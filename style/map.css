@@ -1,0 +1,303 @@
+html {
+	background:#04374e;
+	padding:0;
+	margin:0;
+	font-size: 62.5%;
+}
+
+body {
+	padding:0;
+	margin:0;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#000;
+	font-size: 12px; font-size: 1.2rem;
+	overflow:hidden;
+}
+
+iframe {
+	border:0px;
+	overflow:hidden;	
+}
+
+/*--------------Map------------------*/
+
+
+#container {
+	float:left;
+	width: 100%;
+	overflow:hidden;
+	background:url("../images/banner.jpg") no-repeat left top transparent;
+}
+
+#header {
+	text-indent:-5000px;
+	height:170px;
+}
+
+#banner {
+	z-index:200;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#worldmap {
+}
+
+#mapkeys {
+	background: #222;
+	height: 70%;
+    overflow: auto;
+    position: fixed;
+    right: 20px;
+    top: 60px;
+    width: 180px;
+	color:#fff;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	padding:20px;
+	padding-top:20px;
+	z-index:500;
+	border: 1px solid black;
+	box-shadow:1px 1px 20px #000;
+}
+
+.mapkey {
+	cursor:pointer;
+	color:#F8CF03;
+	font-style:underline;
+}
+
+#mapkeys .mapkey {
+	color:#fff;
+}
+
+#mapkeys .mapkey:hover {
+	color:#F8CF03;
+	font-style:underline;
+}
+
+#mapkeys p {
+	line-height:1.2em;
+}
+
+#pinDetails {
+	position: absolute;
+	right:260px;
+	display:none;
+	width:600px;
+	height:380px;
+	margin-top: 60px;
+	background-color: #284B56;
+	color:#fff;
+	border: 1px solid black;
+	box-shadow:1px 1px 20px #000;
+	z-index: 200;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+}
+
+#bio {
+	overflow:auto;
+	width:98%;
+	height:300px;
+	margin: 0px auto;
+}
+
+#bioTitle{
+	float: left;
+	margin: 15px 25px 10px;
+	font-weight: bold;
+	font-size: 16px; 
+	font-size: 1.6rem; 
+}
+
+.biographies {
+	font-size: 16px; 
+	font-size: 1.6rem;  
+	font-weight:bold;
+	}
+
+#bio p {
+	padding:5px 20px;
+}
+
+#tooltip {
+	position: absolute;
+	display:none;
+	z-index: 150;
+	background-color: #222;
+	color:#fff;
+	padding:10px;
+	box-shadow:1px 1px 10px #000;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+#tooltip a {
+	color:#FED000;
+	text-decoration:underline;
+}
+
+
+img.map {
+	/* Set rules to fill background */
+	min-height: auto;
+	min-width: 1024px;
+	
+	/* Set up proportionate scaling */
+	width: 100%;
+	height: auto;
+	
+	/* Set up positioning */
+	position: relative;
+	top: 0;
+	left: 0;
+	
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+	img.map {
+		left: 50%;
+		margin-left: -512px;   /* 50% */
+	}
+}
+
+.pin {
+	position: absolute;
+	width: 26px;
+	height: 42px;
+	background:url(../images/pin.png) no-repeat;
+	/*background:#FFC900;
+	width:3px;
+	height:3px;*/
+	z-index:100;
+}
+
+.pin:hover {
+	cursor:pointer;
+}
+
+.selected_pin {
+	background:url(../images/pin2.png) no-repeat;
+	z-index:150;
+}
+
+#bioClose {
+	float: right;
+	margin: 15px 15px 10px 0;
+	padding:5px 10px;
+	background:#357185;
+	color:#fff;
+	border: 1px solid #000000;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	box-shadow: 1px 1px 3px #0D242C;;
+}
+
+#bioClose:hover {
+	background:#203F4A;
+	color:#fff;
+	cursor:pointer;
+}
+
+
+/*--------------Headings and Text------------------*/
+
+h1 { 
+	font-size: 10px; 
+	font-size: 1.0em; 
+}
+
+h2 { 
+	font-size: 24px; 
+	font-size: 2.4rem; 
+}
+
+h3 { 
+	font-size: 18px; 
+	font-size: 1.8rem; 
+}
+
+h4 { 
+	font-size: 16px; 
+	font-size: 1.6rem; 
+}
+
+h5 { 
+	font-size: 13px; 
+	font-size: 1.3rem; 
+}
+
+h6 { 
+	font-size: 10px; 
+	font-size: 1.0rem; 
+}
+
+p, li {
+	font-size: 12px;
+	font-size: 1.2rem;
+}
+
+
+h1 {
+	padding:0;
+	margin:0;
+}
+
+h2, h3, h4, h5, h6 {
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:normal;
+	padding-top:0;
+	padding-bottom: 5px;
+	padding-left:20px;
+	border-bottom:none;
+	letter-spacing:0;
+	color:#4D648E;
+}
+
+hr, p, ul, ol, dl, pre, blockquote, address, table, form {
+    line-height: 1.6em;
+    margin-bottom: 1em;
+}
+
+#footer p, #footer li {
+    font-size: 1.1rem !important;
+}
+
+/*--------------Links------------------*/
+
+a, a:active {
+    color: #FFD00A;
+}
+
+a:link {
+	color: #FFD00A; 
+	text-decoration: none;}
+	
+a:visited {
+	color: #FFD00A; 
+	text-decoration: none;}
+	
+a:hover {
+	color: #6A9CA3;
+	text-decoration: underline;}
+
+a:active {
+	color: #FFD00A;
+	text-decoration: none;}
+
+a:current {
+	color:#FFD00A;
+	text-decoration:underline;
+	}	
+
+	
+.error {
+	color:#F00 !important;
+	padding-bottom:20px;
+}
