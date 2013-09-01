@@ -96,7 +96,7 @@ iframe {
 	color:#fff;
 	border: 1px solid black;
 	box-shadow:1px 1px 20px #000;
-	z-index: 200;
+	z-index: 500;
 	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
 	border-radius:10px;
@@ -145,6 +145,17 @@ iframe {
 	text-decoration:underline;
 }
 
+#mapBlock {
+	position: absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index: 400;
+	background-color: #222;
+	opacity: 0.4;
+	filter:alpha(opacity=40);
+}
 
 img.map {
 	/* Set rules to fill background */

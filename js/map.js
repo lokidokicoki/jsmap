@@ -104,6 +104,7 @@ function Map () {
 					$('#mapKeys').append(link);
 				}
 			}
+			$("#mapBlock").hide();
 		},
 
 		/**
@@ -167,11 +168,13 @@ function Map () {
 			$('#mapData').empty().load(pin.link);
 			$('#mapDataTitle').empty().html(pin.tip);
 			//$('#pinDetails').css('left', containerDims[0]-detailsDims[0]).css('top', $('#header').height).fadeIn();
+			$('#mapBlock').show();
 			$('#mapDataBox').fadeIn();
 
 		},
 
 		hideDetails : function () {
+			$('#mapBlock').hide();
 			if (currentPin) {
 				$('#'+currentPin.id).removeClass('mapPinSelected');
 				currentPin = null;
