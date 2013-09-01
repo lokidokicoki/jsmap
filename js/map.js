@@ -13,7 +13,7 @@ function Map () {
 	var self = null;
 
 	// settings for animation speed and easing type, can be overridden in `init`
-	var settings = {animSpeed:5000, easing:'linear', map:'worldmap', links:'links', pinText:true};
+	var settings = {animSpeed:5000, easing:'linear', map:'worldmap', links:'mapkeys', pinText:true};
 
 	// cache dimensions of container
 	var containerDims = [0,0];
@@ -87,7 +87,7 @@ function Map () {
 			//http://stackoverflow.com/questions/1129216/sorting-objects-in-an-array-by-a-field-value-in-javascript
 			pins.sort(function(a,b) {return (a.tip > b.tip) ? 1 : ((b.tip > a.tip) ? -1 : 0);} );
 
-			//build pins & links
+			//build pins & mapkeys
 			for (var i = 0, len = pins.length; i < len; i++) {
 				var pin = pins[i];
 				if (!pin.hide || pin.hide === undefined){
@@ -101,7 +101,7 @@ function Map () {
 					$('#worldmap').append(marker).on('mousedown', function () {$('#tooltip').hide()});
 					// put pin in right place, effective origin is center-bottom of pin
 					$('#'+pin.id).css('left', pin.x - dx).css('top', pin.y - dy).on('mouseenter', {pin:pin}, self.tip);
-					$('#links').append(link);
+					$('#mapkeys').append(link);
 				}
 			}
 		},
