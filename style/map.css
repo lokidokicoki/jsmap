@@ -82,13 +82,16 @@ iframe {
 	line-height:1.2em;
 }
 
+/* centered vertically and horizontally */
 #mapDataBox {
 	position: absolute;
-	right:260px;
+	left:50%;
+	top:50%;
 	display:none;
 	width:600px;
 	height:380px;
-	margin-top: 60px;
+	margin-left:-300px;
+	margin-top:-190px;
 	background-color: #284B56;
 	color:#fff;
 	border: 1px solid black;
