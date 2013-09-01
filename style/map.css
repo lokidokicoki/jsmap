@@ -22,29 +22,29 @@ iframe {
 /*--------------Map------------------*/
 
 
-#container {
+#mapContainer {
 	float:left;
 	width: 100%;
 	overflow:hidden;
-	background:url("../images/banner.jpg") no-repeat left top transparent;
+	/*background:url("../images/banner.jpg") no-repeat left top transparent;*/
 }
 
-#header {
+#mapHeader {
 	text-indent:-5000px;
 	height:170px;
 }
 
-#banner {
+#mapBanner {
 	z-index:200;
 	position:absolute;
 	top:0;
 	left:0;
 }
 
-#worldmap {
+#mapMap {
 }
 
-#mapkeys {
+#mapKeys {
 	background: #222;
 	height: 70%;
     overflow: auto;
@@ -63,26 +63,26 @@ iframe {
 	box-shadow:1px 1px 20px #000;
 }
 
-.mapkey {
+.mapKey {
 	cursor:pointer;
 	color:#F8CF03;
 	font-style:underline;
 }
 
-#mapkeys .mapkey {
+#mapKeys .mapKey {
 	color:#fff;
 }
 
-#mapkeys .mapkey:hover {
+#mapKeys .mapKey:hover {
 	color:#F8CF03;
 	font-style:underline;
 }
 
-#mapkeys p {
+#mapKeys p {
 	line-height:1.2em;
 }
 
-#pinDetails {
+#mapDataBox {
 	position: absolute;
 	right:260px;
 	display:none;
@@ -99,14 +99,14 @@ iframe {
 	border-radius:10px;
 }
 
-#bio {
+#mapData {
 	overflow:auto;
 	width:98%;
 	height:300px;
 	margin: 0px auto;
 }
 
-#bioTitle{
+#mapDataTitle{
 	float: left;
 	margin: 15px 25px 10px;
 	font-weight: bold;
@@ -114,17 +114,17 @@ iframe {
 	font-size: 1.6rem; 
 }
 
-.biographies {
+.mapKey {
 	font-size: 16px; 
 	font-size: 1.6rem;  
 	font-weight:bold;
 	}
 
-#bio p {
+#mapData p {
 	padding:5px 20px;
 }
 
-#tooltip {
+#mapTip {
 	position: absolute;
 	display:none;
 	z-index: 150;
@@ -137,7 +137,7 @@ iframe {
 	border-radius:5px;
 }
 
-#tooltip a {
+#mapTip a {
 	color:#FED000;
 	text-decoration:underline;
 }
@@ -166,7 +166,7 @@ img.map {
 	}
 }
 
-.pin {
+.mapPin {
 	position: absolute;
 	width: 26px;
 	height: 42px;
@@ -177,16 +177,16 @@ img.map {
 	z-index:100;
 }
 
-.pin:hover {
+.mapPin:hover {
 	cursor:pointer;
 }
 
-.selected_pin {
+.mapPinSelected {
 	background:url(../images/pin2.png) no-repeat;
 	z-index:150;
 }
 
-#bioClose {
+#mapDataClose {
 	float: right;
 	margin: 15px 15px 10px 0;
 	padding:5px 10px;
@@ -199,7 +199,7 @@ img.map {
 	box-shadow: 1px 1px 3px #0D242C;;
 }
 
-#bioClose:hover {
+#mapDataClose:hover {
 	background:#203F4A;
 	color:#fff;
 	cursor:pointer;

@@ -6,6 +6,9 @@
 <script src="http://code.jquery.com/jquery-1.8.3.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js" type="text/javascript"></script>
 
+<!-- load touch-punch for mobile devices -->
+<script src="jutpm/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+
 <!-- load our code -->
 <script src="js/map.js" type="text/javascript"></script>
 <script src="js/pins.js" type="text/javascript"></script>
@@ -13,39 +16,40 @@
 </head>
 <body>
  
-<div id="container">
-	<div id="header"><h1>Draggable JavaScript Map</h1></div>
-	<div id="banner"><h2>Drag Me!</h2></div>
-	<div id="worldmap">
+<div id="mapContainer">
+	<div id="mapHeader"><h1>Draggable JavaScript Map</h1></div>
+	<div id="mapBanner"><h2>Drag Me!</h2></div>
+	<div id="mapMap">
 		<img src="images/map.png" alt="World Map">
-		<div id="tooltip">
+		<div id="mapTip">
 			<!-- populated on pin hover -->
 		</div>
 	</div>
 </div>
 
-<div id="mapkeys">
-	<p class="mapkey">Welcome!</p>
+<div id="mapKeys">
+	<p class="mapKey">Welcome!</p>
     
     <p>The interactive map can be explored by clicking on one of the links below or by dragging the map around your screen.</p>
     
     <p>&nbsp;</p>
     
-    <p class="mapkey">Key</p>
+    <p class="mapKey">Key</p>
     <!-- populated by Map.init -->
 </div>
 
-<div id="pinDetails">
-	<span id="bioTitle"></span>
-	<button id="bioClose" onclick="map.hideDetails();" id="close">Close</button>
-	<div id="bio">
-		<!-- populated on linkClick -->
+<div id="mapDataBox">
+	<span id="mapDataTitle"></span>
+	<button id="mapDataClose" onclick="map.hideDetails();" id="close">Close</button>
+	<div id="mapData">
+		<!-- populated on map.keyClick -->
 	</div>
 </div>
 
+<!-- initialise map object -->
 <script type="text/javascript">
 	$(document).ready(function () {
-		map.init(pinData, {easing:'easeInOutSine', animSpeed:2000, pinText:false});
+		map.init(pinData);
 	});
 </script>
 </body>

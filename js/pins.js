@@ -8,6 +8,6 @@
  * tip: tooltip text for this pin
  */
 var pinData = [
-	{id:'pin01', x:1500, y:462, link:'data/01.html', tip:'A Pin'}, 
-	{id:'pin02', x:1679, y:668, link:'data/02.html', tip:'Another Pin'},
+	{id:'mapPin01', x:1500, y:462, link:'data/01.html', tip:'A Pin'}, 
+	{id:'mapPin02', x:1679, y:668, link:'data/02.html', tip:'Another Pin'},
 ];

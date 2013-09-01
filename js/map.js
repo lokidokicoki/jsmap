@@ -13,7 +13,7 @@ function Map () {
 	var self = null;
 
 	// settings for animation speed and easing type, can be overridden in `init`
-	var settings = {animSpeed:5000, easing:'linear', map:'worldmap', links:'mapkeys', pinText:true};
+	var settings = {animSpeed:2000, easing:'easeInOutSine', map:'mapMap', links:'mapKeys', pinText:false};
 
 	// cache dimensions of container
 	var containerDims = [0,0];
@@ -22,7 +22,7 @@ function Map () {
 	var detailsDims = [0,0,0,0]; //w,h,x,y
 
 	// map pin details
-  	// pin = {id: 'pin01', x:2351, y:643, data:'data/01.html', tip:'A Pin'},
+  	// pin = {id: 'mapPin01', x:2351, y:643, data:'data/01.html', tip:'A Pin'},
 	var pins = null;
 
 	// pin offset
@@ -46,7 +46,7 @@ function Map () {
 		/**
 		 * Initialise map object.
 		 * Create pin markers
-		 * Create mapkey side bar entries
+		 * Create mapKey side bar entries
 		 */
 		init : function (data, args) {
 			self = this;
@@ -60,48 +60,48 @@ function Map () {
 			}
 
 			// cache div dimensions, TODO: handle resize events
-			containerDims[0] = $('#container').width()/2;
-			containerDims[1] = $('#container').height()/2;
-			detailsDims[0] = $('#pinDetails').width()/2;
-			detailsDims[1] = $('#pinDetails').height()/2;
+			containerDims[0] = $('#mapContainer').width()/2;
+			containerDims[1] = $('#mapContainer').height()/2;
+			detailsDims[0] = $('#mapDataBox').width()/2;
+			detailsDims[1] = $('#mapDataBox').height()/2;
 
 			// find width & height of pin image.
 			//http://stackoverflow.com/questions/5841635/how-to-get-css-width-of-class
 			// new div, set class, `measure`, remove, ..., profit!
-			var div = $('<div>').addClass('pin').hide();
+			var div = $('<div>').addClass('mapPin').hide();
 			$('body').append(div);
 			dx = div.width()/2;
 			dy = div.height();
 			div.remove();
 			//console.debug($('#pinDetails').offset());
-			$("#pinDetails").show();
-			var o = $('#pinDetails').offset();
+			$("#mapDataBox").show();
+			var o = $('#mapDataBox').offset();
 			detailsDims[2] = o.left;
 			detailsDims[3] = o.top;
-			$("#pinDetails").hide();
+			$("#mapDataBox").hide();
 
 			// make map 'draggable'
-			$("#worldmap").draggable();
+			$("#mapMap").draggable();
 
 			//sort pin data alphabetically, found here:
 			//http://stackoverflow.com/questions/1129216/sorting-objects-in-an-array-by-a-field-value-in-javascript
 			pins.sort(function(a,b) {return (a.tip > b.tip) ? 1 : ((b.tip > a.tip) ? -1 : 0);} );
 
-			//build pins & mapkeys
+			//build pins & mapKeys
 			for (var i = 0, len = pins.length; i < len; i++) {
 				var pin = pins[i];
 				if (!pin.hide || pin.hide === undefined){
-					var link = '<p><span class="link" onclick="map.linkClick(\''+pin.id+'\')">'+pin.tip+'</span></p>';
-					var marker = '<div id="'+pin.id+'" class="pin" onclick="map.pinClick(\''+pin.id+'\');">';
+					var link = '<p><span class="mapKey" onclick="map.keyClick(\''+pin.id+'\')">'+pin.tip+'</span></p>';
+					var marker = '<div id="'+pin.id+'" class="mapPin" onclick="map.pinClick(\''+pin.id+'\');">';
 					if (settings.pinText) {
 						marker += pin.tip;
 					}
 					marker +='</div>';
 
-					$('#worldmap').append(marker).on('mousedown', function () {$('#tooltip').hide()});
+					$('#mapMap').append(marker).on('mousedown', function () {$('#mapTip').hide()});
 					// put pin in right place, effective origin is center-bottom of pin
-					$('#'+pin.id).css('left', pin.x - dx).css('top', pin.y - dy).on('mouseenter', {pin:pin}, self.tip);
-					$('#mapkeys').append(link);
+					$('#'+pin.id).css('left', pin.x - dx).css('top', pin.y - dy).on('mouseenter', {pin:pin}, self.showTip).on('mouseleave', function(){$('#mapTip').hide()});
+					$('#mapKeys').append(link);
 				}
 			}
 		},
@@ -136,12 +136,12 @@ function Map () {
 		 * User has clicked a link the RHS bar.
 		 * Find find, scroll map to show pin, show details.
 		 */
-		linkClick : function (id) {
+		keyClick : function (id) {
 			var pin = self.getPin(id);
 			if (pin){
 				var x = (-1 * (pin.x - dx - detailsDims[0] - detailsDims[2])).toString() + 'px';
 				var y = (-1 * (pin.y - dy*2 - detailsDims[1] - detailsDims[3])).toString() + 'px';
-				$('#worldmap').animate(
+				$('#mapMap').animate(
 					{left: x, top: y}, 
 					settings.animSpeed, 
 					settings.easing,
@@ -155,39 +155,39 @@ function Map () {
 		 */
 		details : function (pin, nocache) {
 			if (currentPin) {
-				$('#'+currentPin.id).removeClass('selected_pin');
+				$('#'+currentPin.id).removeClass('mapPinSelected');
 			}
 			if (!nocache || nocache === undefined){
 				currentPin = pin;
-				$('#'+currentPin.id).addClass('selected_pin');
+				$('#'+currentPin.id).addClass('mapPinSelected');
 			}
 
-			$('#tooltip').hide();
+			$('#mapTip').hide();
 			// requires a webserver to serve the contents of  'link'
-			$('#bio').empty().load(pin.link);
-			$('#bioTitle').empty().html(pin.tip);
+			$('#mapData').empty().load(pin.link);
+			$('#mapDataTitle').empty().html(pin.tip);
 			//$('#pinDetails').css('left', containerDims[0]-detailsDims[0]).css('top', $('#header').height).fadeIn();
-			$('#pinDetails').fadeIn();
+			$('#mapDataBox').fadeIn();
 
 		},
 
 		hideDetails : function () {
 			if (currentPin) {
-				$('#'+currentPin.id).removeClass('selected_pin');
+				$('#'+currentPin.id).removeClass('mapPinSelected');
 				currentPin = null;
 			}
-			$('#pinDetails').fadeOut();
+			$('#mapDataBox').fadeOut();
 		},
 
 		/**
 		 * Show tip next to pin on hover.
 		 * @param event jquery event
 		 */
-		tip : function (event) {
+		showTip : function (event) {
 			var pin = event.data.pin;
-			var frag = pin.tip;// + '<p/><span class="link" onclick="alert(pin.id);map.linkClick(\''+pin.id+'\');">Click for bio</span>';
+			var frag = pin.tip;
 			// NB: we use inline-table to 'shrink-wrap' the tooltip, 'inline' or 'block' causes text wrapping, not desired!
-			$('#tooltip').empty().html(frag).css('left', pin.x-dx+30).css('top', pin.y-dy).css('display', 'inline-table');
+			$('#mapTip').empty().html(frag).css('left', pin.x-dx+30).css('top', pin.y-dy).css('display', 'inline-table');
 		}
 	};
 };
